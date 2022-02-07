@@ -1,0 +1,9 @@
+<Alloy>
+	<View class="letters">
+		<Widget src="letter" right="5"/>
+		<Widget src="letter" right="5"/>
+		<Widget src="letter" right="5"/>
+		<Widget src="letter" right="5"/>
+		<Widget src="letter"/>
+	</View>
+</Alloy>

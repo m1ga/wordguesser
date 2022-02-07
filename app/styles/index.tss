@@ -1,0 +1,39 @@
+"#view_keyboard" : {
+  height: Ti.UI.SIZE,
+  layout:"vertical"
+}
+"#btn_check" : {
+}
+"#btn_back" : {
+  right: 10,
+}
+
+"#rows": {
+  top: 0,
+  layout: 'vertical',
+  height: Ti.UI.SIZE
+}
+
+"#btn_new": {
+  left: 10,
+}
+
+"#dialog": {
+  cancel: 1
+}
+
+"#view_menu": {
+  height: Ti.UI.SIZE,
+  width: Ti.UI.FILL
+}
+
+"#view_bottom": {
+  bottom: 10,
+  layout:'vertical',
+  height: Ti.UI.SIZE,
+  width: Ti.UI.FILL
+}
+
+"Button": {
+  backgroundColor: "buttonColor"
+}

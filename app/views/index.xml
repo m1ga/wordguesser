@@ -1,0 +1,28 @@
+<Alloy>
+	<Window title="Word guesser">
+
+		<View id="rows">
+			<Widget src="letterRow"/>
+			<Widget src="letterRow"/>
+			<Widget src="letterRow"/>
+			<Widget src="letterRow"/>
+			<Widget src="letterRow"/>
+		</View>
+
+		<View id="view_bottom">
+			<View id="view_menu">
+				<Button id="btn_check" title="Check" onClick="onClickCheck"/>
+				<Button id="btn_new" title="New" onClick="onClickNew"/>
+				<Button id="btn_back" title="Back" onClick="onClickBack"/>
+			</View>
+			<View id="view_keyboard"/>
+		</View>
+
+		<OptionDialog id="dialog" title="Restart?" onClick="onClickDialog">
+			<Options>
+				<Option>Yes</Option>
+				<Option cancel="true">No</Option>
+			</Options>
+		</OptionDialog>
+	</Window>
+</Alloy>

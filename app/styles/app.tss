@@ -1,0 +1,9 @@
+"Window":{
+	backgroundColor: "windowBackgroundColor"
+}
+"Label": {
+	width: Ti.UI.SIZE,
+	height: Ti.UI.SIZE,
+	color: "text",
+  touchEnabled: false
+}

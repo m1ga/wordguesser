@@ -1,0 +1,7 @@
+".letters" : {
+  top: 10,
+  bottom: 10,
+  layout: "horizontal",
+  height: Ti.UI.SIZE,
+  width: Ti.UI.SIZE
+}

@@ -1,0 +1,38 @@
+{
+  "windowBackgroundColor": {
+    "dark": "#212121",
+    "light": "#ffffff"
+  },
+  "text": {
+    "dark": "#ffffff",
+    "light": "#212121"
+  },
+  "textCheck": {
+    "dark": "#ffffff",
+    "light": "#ffffff"
+  },
+  "letterCorrect": {
+    "dark": "#008800",
+    "light": "#008800"
+  },
+  "letterIncorrect": {
+    "dark": "#333333",
+    "light": "#333333"
+  },
+  "letterInWord": {
+    "dark": "#880088",
+    "light": "#ff00ff"
+  },
+  "letterKeyboard": {
+    "dark": "#999999",
+    "light": "#999999"
+  },
+  "letterKeyboardText": {
+    "dark": "#000000",
+    "light": "#ffffff"
+  },
+  "buttonColor": {
+    "dark": "#0a8dff",
+    "light": "#74bcff"
+  }
+}

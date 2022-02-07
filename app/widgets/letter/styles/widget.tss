@@ -1,0 +1,18 @@
+"#view" : {
+  width: 42,
+  height: 42,
+  touchFeedback: true,
+  touchFeedbackColor: "#fff"
+}
+"#view_border" : {
+  width: Ti.UI.FILL,
+  height: Ti.UI.FILL,
+  borderWidth: 2,
+  borderColor: "#aaa",
+  touchEnabled: false
+}
+"#lbl" : {
+  font: {
+    fontSize: 24
+  }
+}

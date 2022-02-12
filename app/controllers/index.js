@@ -1,6 +1,11 @@
 const maxLetter = $.rows.children[0].children.length;
-const gameWords = require("/words").words;
-const checkWords = require("/words").checkWords;
+var lang = Ti.Locale.currentLanguage;
+var wordFile = "words_en";
+if (lang == "de") {
+	wordFile = "words_de";
+}
+const gameWords = require("/" + wordFile).words;
+const checkWords = require("/" + wordFile).checkWords;
 const keyboard = "QWERTZUIOP|ASDFGHJKL|YXCVBNM";
 var keyboardLetterWidth = Math.floor(Alloy.Globals.WIDTH / keyboard.split("|")[0].length);
 var isCheck = false;
@@ -43,7 +48,7 @@ function onClickCheck(e) {
 	// check word
 	//
 	if (currentLetter == maxLetter) {
-		if (checkWords.indexOf(guessWord) > -1) {
+		if (checkWords.indexOf(guessWord) > -1 || gameWords.indexOf(guessWord) > -1) {
 			for (var i = 0; i < maxLetter; ++i) {
 				$.rows.children[currentRow].children[i].turn();
 
@@ -55,20 +60,20 @@ function onClickCheck(e) {
 			isCheck = !isCheck;
 			currentLetter = 0;
 			currentRow++;
-			guessWord = "";
-			clickedKeys = [];
 
 			if (word.toLowerCase() == guessWord.toLowerCase()) {
 				// word is correct
 				isActive = false;
-				alert("You've found it!");
+				alert(L("foundIt"));
 			} else if (currentRow > $.rows.children.length - 1) {
 				// game over
 				isActive = false;
-				alert("The word was: " + word);
+				alert(L("wordWas") + word);
 			}
+			guessWord = "";
+			clickedKeys = [];
 		} else {
-			if (isActive) alert("Word not in word list.");
+			if (isActive) alert(L("notInList"));
 		}
 	}
 }
@@ -145,7 +150,7 @@ function onClickNew(e) {
 function onClickDialog(e) {
 	if (e.index == 0) {
 		// start a new game
-		alert("The word was:" + word);
+		alert(L("wordWas") + word);
 		init();
 	}
 }

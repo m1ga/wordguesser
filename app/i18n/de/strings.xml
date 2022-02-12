@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+	<string name="foundIt">Du hast es gefunden!</string>
+	<string name="wordWas">Das Wort war:</string>
+	<string name="notInList">Wort ist nicht in der Liste.</string>
+	<string name="check">Prüfen</string>
+	<string name="newGame">Neu starten</string>
+	<string name="back">Zurück</string>
+	<string name="restart">Neu starten?</string>
+</resources>

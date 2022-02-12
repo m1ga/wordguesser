@@ -7,6 +7,7 @@ Guess the 5-letter word in five tries. A wordle like app for Appcelerator Titani
 ## Features
 
 * word list (`/lib/words.js`) with 5 letter words (array for "words to guess" and "words to check")
+* two languages: de and en
 * light/dark mode
 * letter turn animation
 * start a new game with a new word

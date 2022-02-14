@@ -115,6 +115,8 @@ $.view.getStatus = function() {
 $.view.setStatus = function(val) {
 	if (val == 1) {
 		$.view.backgroundColor = "letterCorrect";
+	} else if (val == -1) {
+		$.view.backgroundColor = "letterInWord";
 	} else if (val == 0) {
 		$.view.backgroundColor = "letterIncorrect";
 	}

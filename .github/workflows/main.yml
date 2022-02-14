@@ -1,0 +1,74 @@
+name: Android app
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        node-version: [14.18.1]
+    outputs:
+      output1: ${{ steps.step1.outputs.browserstack_appid }}
+    steps:
+    - uses: actions/checkout@v2
+    - uses: joschi/setup-jdk@v2
+      with:
+        java-version: '12'
+
+    - name: Node install
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Cache Gradle packages
+      uses: actions/cache@v2
+      with:
+        path: |
+          ~/.gradle/caches
+          ~/.gradle/wrapper
+        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+        restore-keys: |
+          ${{ runner.os }}-gradle-
+          
+    - name: Cache Node.js modules
+      id: node-cache
+      uses: actions/cache@v2
+      with:
+        path: node_modules
+        key: ${{ runner.OS }}-node-modules-${{ hashFiles('package-lock.json') }}
+        restore-keys: |
+          ${{ runner.OS }}-node-modules-
+          ${{ runner.OS }}-
+          
+    - name: Install Titanium
+      run: |
+        sudo npm i -g titanium appcelerator alloy
+        
+        ti sdk install 10.1.1.GA
+        ti sdk select 10.1.1.GA
+        sudo chmod 777 /Users/runner/Library/'Application Support'/Titanium/modules/android
+        sudo chmod 777 /Users/runner/Library/'Application Support'/Titanium/modules/iphone
+        sudo chmod 777 /Users/runner/.titanium
+    
+    - name: Build app
+      run: |        
+        ti build -p android -b --log-level info --no-colors --no-progress-bars -q
+
+    - name: Cleanup Gradle Cache
+      # Remove some files from the Gradle cache, so they aren't cached by GitHub Actions.
+      # Restoring these files from a GitHub Actions cache might cause problems for future builds.
+      run: |
+        rm -f ~/.gradle/caches/modules-2/modules-2.lock
+        rm -f ~/.gradle/caches/modules-2/gc.properties   
+        # /build/android/app/build/outputs/apk/debug
+        
+    - name: Upload APK
+      uses: actions/upload-artifact@v2
+      with:
+        name: my APK
+        path: ./build/android/app/build/outputs/apk/debug/app-debug.apk 

@@ -1,13 +1,9 @@
 var args = $.args;
-var correctLetter = "";
-var correctWord = "";
 var letterStatus = -1; // 1 = letter at correct place, -1 = letter in word but at a different spot, 0 = letter not in word
 
-if (args.correctLetter) {
-	correctLetter = args.correctLetter;
-}
 if (args.letter) {
 	$.lbl.text = args.letter;
+	$.view.letter = args.letter;
 }
 
 if (args.isKeyboard) {
@@ -23,17 +19,11 @@ if (args.isKeyboard) {
 	$.view.top = args.top;
 }
 
-exports.turn = function() {
+exports.turn = function(_letterStatus) {
 	//
 	// turn letter to show result
 	//
-	if ($.lbl.text == correctLetter && $.lbl.text != "") {
-		letterStatus = 1;
-	} else if (correctWord.indexOf($.lbl.text) > -1) {
-		letterStatus = -1;
-	} else {
-		letterStatus = 0;
-	}
+	letterStatus = _letterStatus;
 	var matrix = Ti.UI.createMatrix2D();
 	matrix = matrix.scale(0, 1);
 	var ani = Ti.UI.createAnimation({
@@ -41,10 +31,10 @@ exports.turn = function() {
 		duration: 500,
 	});
 	$.view.animate(ani, function() {
-		if ($.lbl.text == correctLetter && $.lbl.text != "") {
+		if (letterStatus == 1) {
 			$.view.backgroundColor = "letterCorrect";
 			$.lbl.color = "textCheck";
-		} else if (correctWord.indexOf($.lbl.text) > -1) {
+		} else if (letterStatus == -1) {
 			$.view.backgroundColor = "letterInWord";
 			$.lbl.color = "textCheck";
 		}
@@ -96,12 +86,6 @@ exports.setLetter = function(text) {
 };
 $.view.setLetter = exports.setLetter;
 
-$.view.setTargetLetter = function(text) {
-	correctLetter = text;
-};
-$.view.setTargetWord = function(text) {
-	correctWord = text;
-};
 exports.addEventListener = function(fn, clb) {
 	$.view.addEventListener(fn, clb);
 };
@@ -116,7 +100,9 @@ $.view.setStatus = function(val) {
 	if (val == 1) {
 		$.view.backgroundColor = "letterCorrect";
 	} else if (val == -1) {
-		$.view.backgroundColor = "letterInWord";
+		if ($.view.backgroundColor != "letterCorrect") {
+			$.view.backgroundColor = "letterInWord";
+		}
 	} else if (val == 0) {
 		$.view.backgroundColor = "letterIncorrect";
 	}

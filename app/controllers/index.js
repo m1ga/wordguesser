@@ -16,6 +16,7 @@ var guessWord = "";
 var word = "";
 var clickedKeys = [];
 var keyObjects = [];
+var checkedLetters = [];
 
 function init() {
 	//
@@ -32,8 +33,6 @@ function init() {
 	for (var i = 0; i < word.length; ++i) {
 		for (var r = 0; r < $.rows.children.length; ++r) {
 			$.rows.children[r].children[i].reset();
-			$.rows.children[r].children[i].setTargetWord(word);
-			$.rows.children[r].children[i].setTargetLetter(word[i]);
 		}
 	}
 
@@ -49,8 +48,56 @@ function onClickCheck(e) {
 	//
 	if (currentLetter == maxLetter) {
 		if (checkWords.indexOf(guessWord) > -1 || gameWords.indexOf(guessWord) > -1) {
+
+			// find correctly places letters
 			for (var i = 0; i < maxLetter; ++i) {
-				$.rows.children[currentRow].children[i].turn();
+				if (clickedKeys[i].letter == word[i] && clickedKeys[i].letter != "") {
+					letterStatus = 1;
+					checkedLetters.push(clickedKeys[i].letter);
+					$.rows.children[currentRow].children[i].turn(letterStatus);
+
+					clickedKeys[i].setStatus(
+						$.rows.children[currentRow].children[i].getStatus()
+					);
+				}
+			}
+
+
+			// find other letters
+			for (var i = 0; i < maxLetter; ++i) {
+				if (clickedKeys[i].letter == word[i] && clickedKeys[i].letter != "") {
+					//
+					letterStatus = 1;
+				} else if (word.indexOf(clickedKeys[i].letter) > -1) {
+
+					var letterCount = _.filter(word, function(item) {
+						return item == clickedKeys[i].letter
+					}).length;
+
+					var letterCheckedCount = _.filter(checkedLetters, function(item) {
+						return item == clickedKeys[i].letter
+					}).length;
+
+					if (checkedLetters.indexOf(clickedKeys[i].letter) == -1) {
+
+						// letter in word - first time
+						letterStatus = -1;
+						checkedLetters.push(clickedKeys[i].letter);
+					} else {
+						// letter in word - but already found
+						if (letterCheckedCount < letterCount) {
+							// letter is there multiple times
+							letterStatus = -1;
+							checkedLetters.push(clickedKeys[i].letter);
+						} else {
+							letterStatus = 2;
+						}
+					}
+				} else {
+					letterStatus = 0;
+				}
+
+				$.rows.children[currentRow].children[i].turn(letterStatus);
 
 				clickedKeys[i].setStatus(
 					$.rows.children[currentRow].children[i].getStatus()
@@ -60,6 +107,7 @@ function onClickCheck(e) {
 			isCheck = !isCheck;
 			currentLetter = 0;
 			currentRow++;
+			checkedLetters = [];
 
 			if (word.toLowerCase() == guessWord.toLowerCase()) {
 				// word is correct
@@ -95,7 +143,7 @@ for (var i = 0; i < keyboard.length; ++i) {
 			width: keyboardLetterWidth
 		});
 		letterRow.add(key.getView());
-		key.addEventListener("click", onClickLetter);
+		key.addEventListener("touchstart", onClickLetter);
 		keyObjects.push(key);
 	} else {
 		letterRow = Ti.UI.createView({
@@ -112,12 +160,12 @@ function onClickLetter(e) {
 	//
 	// click on a keyboard letter
 	//
-	if (isActive) {
+	if (isActive && e.source.letter) {
 		if (currentLetter < maxLetter) {
 			clickedKeys.push(e.source);
-			guessWord += e.source.getLetter().toLowerCase();
+			guessWord += e.source.letter.toLowerCase();
 			$.rows.children[currentRow].children[currentLetter].setLetter(
-				e.source.getLetter()
+				e.source.letter
 			);
 			currentLetter++;
 		}

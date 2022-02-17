@@ -1,9 +1,14 @@
-"Window":{
+"Window" : {
 	backgroundColor: "windowBackgroundColor"
 }
-"Label": {
+"Label" : {
 	width: Ti.UI.SIZE,
 	height: Ti.UI.SIZE,
 	color: "text",
-  touchEnabled: false
+	touchEnabled: false
+}
+".icon" : {
+	font: {
+		fontFamily: "remixIcon"
+	}
 }

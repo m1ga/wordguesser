@@ -13,6 +13,7 @@ Guess the 5-letter word in five tries. A wordle like app for Appcelerator Titani
 * start a new game with a new word
 * easy to change keyboard layout: change the `keyboard` constant
 * on-screen keyboard with letter feedback colors
+* share squares
 
 ## 📲 How to install the app
 

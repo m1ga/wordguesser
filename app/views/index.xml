@@ -14,7 +14,7 @@
 				<Button id="btn_new" titleid="newGame" onClick="onClickNew"/>
 				<Button id="btn_share" titleid="share" onClick="onClickShare"/>
 				<Button id="btn_check" titleid="check" onClick="onClickCheck"/>
-				<Button id="btn_back" titleid="back" onClick="onClickBack"/>
+				<Button id="btn_back" class="icon" title="\uEC1A" onClick="onClickBack"/>
 			</View>
 			<View id="view_keyboard"/>
 		</View>

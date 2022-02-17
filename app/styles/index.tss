@@ -3,11 +3,14 @@
   layout: "vertical"
 }
 "#btn_check" : {
-  right: 90
+  right: 70
 }
 "#btn_back" : {
-  width: 80,
-  right: 5
+  width: 60,
+  right: 5,
+  font: {
+    fontSize: 20
+  }
 }
 "#rows" : {
   top: 0,

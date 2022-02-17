@@ -120,11 +120,16 @@ function onClickCheck(e) {
 			currentRow++;
 			blockString += "\n";
 			checkedLetters = [];
+
 			if (word.toLowerCase() == guessWord.toLowerCase()) {
 				// word is correct
 				isActive = false;
 				alert(L("foundIt"));
-				$.btn_share.show();
+
+				if (OS_ANDROID) {
+					// show share button on Android
+					$.btn_share.show();
+				}
 			} else if (currentRow > $.rows.children.length - 1) {
 				// game over
 				isActive = false;

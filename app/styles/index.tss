@@ -1,39 +1,40 @@
 "#view_keyboard" : {
   height: Ti.UI.SIZE,
-  layout:"vertical"
+  layout: "vertical"
 }
 "#btn_check" : {
+  right: 90
 }
 "#btn_back" : {
-  right: 10,
+  width: 80,
+  right: 5
 }
-
-"#rows": {
+"#rows" : {
   top: 0,
   layout: 'vertical',
   height: Ti.UI.SIZE
 }
-
-"#btn_new": {
-  left: 10,
+"#btn_new" : {
+  left: 5,
+  width: 100
 }
-
-"#dialog": {
+"#dialog" : {
   cancel: 1
 }
-
-"#view_menu": {
+"#view_menu" : {
   height: Ti.UI.SIZE,
   width: Ti.UI.FILL
 }
-
-"#view_bottom": {
+"#view_bottom" : {
   bottom: 10,
-  layout:'vertical',
+  layout: 'vertical',
   height: Ti.UI.SIZE,
   width: Ti.UI.FILL
 }
-
-"Button": {
+"Button" : {
   backgroundColor: "buttonColor"
+}
+"#btn_share" : {
+  left: 110,
+  visible: false
 }

@@ -17,6 +17,10 @@ var word = "";
 var clickedKeys = [];
 var keyObjects = [];
 var checkedLetters = [];
+const blockOpen = "⬛";
+const blockRight = "🟩";
+const blockOther = "🟪";
+var blockString = "";
 
 function init() {
 	//
@@ -29,6 +33,8 @@ function init() {
 	isCheck = false;
 	isActive = true;
 	guessWord = "";
+	blockString = "";
+	$.btn_share.hide();
 
 	for (var i = 0; i < word.length; ++i) {
 		for (var r = 0; r < $.rows.children.length; ++r) {
@@ -68,6 +74,7 @@ function onClickCheck(e) {
 				if (clickedKeys[i].letter == word[i] && clickedKeys[i].letter != "") {
 					//
 					letterStatus = 1;
+					blockString += blockRight;
 				} else if (word.indexOf(clickedKeys[i].letter) > -1) {
 
 					var letterCount = _.filter(word, function(item) {
@@ -83,18 +90,22 @@ function onClickCheck(e) {
 						// letter in word - first time
 						letterStatus = -1;
 						checkedLetters.push(clickedKeys[i].letter);
+						blockString += blockOther;
 					} else {
 						// letter in word - but already found
 						if (letterCheckedCount < letterCount) {
 							// letter is there multiple times
 							letterStatus = -1;
 							checkedLetters.push(clickedKeys[i].letter);
+							blockString += blockOther;
 						} else {
 							letterStatus = 2;
+							blockString += blockOpen;
 						}
 					}
 				} else {
 					letterStatus = 0;
+					blockString += blockOpen;
 				}
 
 				$.rows.children[currentRow].children[i].turn(letterStatus);
@@ -107,12 +118,13 @@ function onClickCheck(e) {
 			isCheck = !isCheck;
 			currentLetter = 0;
 			currentRow++;
+			blockString += "\n";
 			checkedLetters = [];
-
 			if (word.toLowerCase() == guessWord.toLowerCase()) {
 				// word is correct
 				isActive = false;
 				alert(L("foundIt"));
+				$.btn_share.show();
 			} else if (currentRow > $.rows.children.length - 1) {
 				// game over
 				isActive = false;
@@ -205,3 +217,18 @@ function onClickDialog(e) {
 
 init();
 $.index.open();
+
+function onClickShare(e) {
+	var intent = Ti.Android.createIntent({
+		action: Ti.Android.ACTION_SEND,
+		type: "text/plain"
+	});
+
+	intent.putExtra(Ti.Android.EXTRA_TEXT, blockString);
+	intent.addCategory(Ti.Android.CATEGORY_DEFAULT);
+	try {
+		Ti.Android.currentActivity.startActivity(intent);
+	} catch (ex) {
+		console.log("Error")
+	}
+}

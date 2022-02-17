@@ -1,4 +1,6 @@
-# Word guesser app for Appcelerator Titanium
+<center><img src="yawg.png"/></center>
+
+# Yet another word game - build with Appcelerator Titanium
 
 Guess the 5-letter word in five tries. A wordle like app for Appcelerator Titanium
 

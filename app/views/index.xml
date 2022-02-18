@@ -19,7 +19,7 @@
 			<View id="view_keyboard"/>
 		</View>
 
-		<OptionDialog id="dialog" titleid="restart" onClick="onClickDialog">
+		<OptionDialog id="dialog" title="L('restart')" message="L('restart_text')" onClick="onClickDialog">
 			<Options>
 				<Option>Yes</Option>
 				<Option cancel="true">No</Option>

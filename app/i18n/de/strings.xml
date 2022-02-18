@@ -7,5 +7,6 @@
 	<string name="newGame">Neu starten</string>
 	<string name="back">Zurück</string>
 	<string name="restart">Neu starten?</string>
+	<string name="restart_text">Wirklich neu starten?\nDas aktuelle Wort wird dann angezeigt.</string>
 	<string name="share">Teilen</string>
 </resources>

@@ -47,7 +47,6 @@ function init() {
 	}
 }
 
-
 function onClickCheck(e) {
 	//
 	// check word
@@ -108,7 +107,9 @@ function onClickCheck(e) {
 					blockString += blockOpen;
 				}
 
-				$.rows.children[currentRow].children[i].turn(letterStatus);
+				if (letterStatus!=1) {
+					$.rows.children[currentRow].children[i].turn(letterStatus);
+				}
 
 				clickedKeys[i].setStatus(
 					$.rows.children[currentRow].children[i].getStatus()
@@ -133,7 +134,11 @@ function onClickCheck(e) {
 			} else if (currentRow > $.rows.children.length - 1) {
 				// game over
 				isActive = false;
-				alert(L("wordWas") + word);
+				alert(L("wordWas") + " "+ word);
+				if (OS_ANDROID) {
+					// show share button on Android
+					$.btn_share.show();
+				}
 			}
 			guessWord = "";
 			clickedKeys = [];
@@ -215,7 +220,7 @@ function onClickNew(e) {
 function onClickDialog(e) {
 	if (e.index == 0) {
 		// start a new game
-		alert(L("wordWas") + word);
+		alert(L("wordWas") + " " + word);
 		init();
 	}
 }

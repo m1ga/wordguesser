@@ -12,7 +12,7 @@ if (args.isKeyboard) {
 	$.view.height = 50;
 	$.view.right = 2;
 	$.view.backgroundColor = "letterKeyboard";
-	$.view_border.borderWidth = 0;
+	$.view.remove($.view_border);
 } else {
 	$.view.left = args.left;
 	$.view.right = args.right;

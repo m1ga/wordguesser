@@ -1,9 +1,12 @@
 "#view_keyboard" : {
   height: Ti.UI.SIZE,
-  layout: "vertical"
+  layout: "vertical",
+  top: 10,
+  bottom: 5
 }
 "#btn_check" : {
-  right: 70
+  right: 70,
+  width: 80
 }
 "#btn_back" : {
   width: 60,
@@ -16,6 +19,9 @@
   top: 0,
   layout: 'vertical',
   height: Ti.UI.SIZE
+}
+"#rows[platform=ios]" : {
+  top: 40
 }
 "#btn_new" : {
   left: 5,
@@ -35,7 +41,10 @@
   width: Ti.UI.FILL
 }
 "Button" : {
-  backgroundColor: "buttonColor"
+  backgroundColor: "buttonColor",
+  height: 40,
+  color: "text",
+  borderRadius: 4
 }
 "#btn_share" : {
   left: 110,

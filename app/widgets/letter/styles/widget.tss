@@ -5,8 +5,8 @@
   touchFeedbackColor: "#fff"
 }
 "#view_border" : {
-  width: Ti.UI.FILL,
-  height: Ti.UI.FILL,
+  width: 42,
+  height: 42,
   borderWidth: 2,
   borderColor: "#aaa",
   touchEnabled: false

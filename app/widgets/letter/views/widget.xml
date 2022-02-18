@@ -1,7 +1,6 @@
 <Alloy>
 	<View id="view">
-		<View id="view_border">
-			<Label id="lbl"/>
-		</View>
+		<View id="view_border"/>
+		<Label id="lbl"/>
 	</View>
 </Alloy>

@@ -9,4 +9,6 @@
 	<string name="restart">Neu starten?</string>
 	<string name="restart_text">Wirklich neu starten?\nDas aktuelle Wort wird dann angezeigt.</string>
 	<string name="share">Teilen</string>
+	<string name="yes">Ja</string>
+	<string name="no">Nein</string>
 </resources>

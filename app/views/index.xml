@@ -21,9 +21,13 @@
 
 		<OptionDialog id="dialog" title="L('restart')" message="L('restart_text')" onClick="onClickDialog">
 			<Options>
-				<Option>Yes</Option>
-				<Option cancel="true">No</Option>
+				<Option>L("yes")</Option>
+				<Option cancel="true">L("no")</Option>
 			</Options>
+			<ButtonNames>
+            <ButtonName>L("yes")</ButtonName>
+            <ButtonName cancel="true">L("no")</ButtonName>
+        </ButtonNames>
 		</OptionDialog>
 	</Window>
 </Alloy>

@@ -9,4 +9,6 @@
 	<string name="restart">Restart?</string>
 	<string name="restart_text">Really restart?\nThe current word will be revealed.</string>
 	<string name="share">Share</string>
+	<string name="yes">Yes</string>
+	<string name="no">No</string>
 </resources>

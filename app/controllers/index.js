@@ -107,7 +107,7 @@ function onClickCheck(e) {
 					blockString += blockOpen;
 				}
 
-				if (letterStatus!=1) {
+				if (letterStatus != 1) {
 					$.rows.children[currentRow].children[i].turn(letterStatus);
 				}
 
@@ -134,7 +134,7 @@ function onClickCheck(e) {
 			} else if (currentRow > $.rows.children.length - 1) {
 				// game over
 				isActive = false;
-				alert(L("wordWas") + " "+ word);
+				alert(L("wordWas") + " " + word);
 				if (OS_ANDROID) {
 					// show share button on Android
 					$.btn_share.show();
@@ -183,6 +183,7 @@ function onClickLetter(e) {
 	// click on a keyboard letter
 	//
 	if (isActive && e.source.letter) {
+		Ti.Media.vibrate([0, 10]);
 		if (currentLetter < maxLetter) {
 			clickedKeys.push(e.source);
 			guessWord += e.source.letter.toLowerCase();
